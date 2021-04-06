@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Task } from '../app.component';
+import { Task } from "../task";
 
 
 @Component({
@@ -27,6 +27,7 @@ import { Task } from '../app.component';
 export class TaskComponent implements OnInit {
   @Input() public task: Task;
   @Output() public rekt: EventEmitter<void> = new EventEmitter();
+  @Output() public update: EventEmitter<void> = new EventEmitter();
   constructor() { }
 
   public deleteTask():void {
@@ -42,6 +43,7 @@ export class TaskComponent implements OnInit {
 
   public toggleComplete(t: Task): void {
     t.isComplete = !t.isComplete;
+    this.update.emit();
   }
 
   ngOnInit(): void {
