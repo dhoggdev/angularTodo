@@ -8,13 +8,13 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   template: `
-  <div class="authWelcome" *ngIf="auth.signedInUser$ | async as user; else googleAuth">
-    <p> welcome {{ user.displayName }}</p>
+  <div class="authWelcome" *ngIf="auth.signedInUser$ | async as user; else sign_in">
+    ur in boi
   </div>
-  <div #googleAuth class="googleAuth">
+  <ng-template #sign_in>
     <img src="assets/googleDark/btn_google_signin_dark_normal_web.png" 
-      (click)="auth.signInWithGoogle()"/> 
-  </div>
+      (click)="auth.signInWithGoogle()" *ngIf="auth.signedInUser$"/> 
+  </ng-template>
   <div class="innerBody">
     <h1> To-Do List<i class="fa fa-plus" aria-hidden="true" (click)="toggleNewTask()"> </i></h1>
     <div class="newTodo">
