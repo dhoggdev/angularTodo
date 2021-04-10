@@ -8,16 +8,12 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   template: `
-  <div class="authWelcome" *ngIf="auth.signedInUser$ | async as user; else sign_in">
-    ur in boi
-  </div>
-  <ng-template #sign_in>
-    <img src="assets/googleDark/btn_google_signin_dark_normal_web.png" 
-      (click)="auth.signInWithGoogle()" *ngIf="auth.signedInUser$"/> 
-  </ng-template>
+  
+
   <div class="innerBody">
     <h1> To-Do List<i class="fa fa-plus" aria-hidden="true" (click)="toggleNewTask()"> </i></h1>
     <div class="newTodo">
+
     <input class="newTask" [ngClass]="{ 'hidden': !newTaskOpen}"
       [(ngModel)]="taskText" placeholder="Enter New Task" 
       (keyUp.enter)="postTask()"
@@ -34,8 +30,15 @@ import { Observable } from 'rxjs';
       >
     </app-task>
     </ul>
+
+    <div class="authWelcome" *ngIf="auth.signedInUser$ | async as user; else sign_in">
     <button (click)="auth.signOut()">SIGN OUT</button>
-    <p *ngIf="auth.signedInUser$ | async as user">User Name is, {{ user.displayName }}</p>
+  </div>
+  <ng-template #sign_in>
+    <img src="assets/googleDark/btn_google_signin_dark_normal_web.png" 
+      (click)="auth.signInWithGoogle()" *ngIf="auth.signedInUser$"/> 
+  </ng-template>
+
   </div>
   `,
   styles: [
